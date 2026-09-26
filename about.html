@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পরিচিতি - মোঃ আমির হামজা</title>
+    <!-- Google Fonts for Modern Bangla Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #0284c7;
+            --primary-dark: #0369a1;
+            --light-blue-bg: #f0f9ff;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+            --heading-color: #0f172a;
+            --accent-color: #e0f2fe;
+            --border-color: #bae6fd;
+        }
+
+        /* -------------------------------------------------------------
+           Global Reset & Touch Blue Highlight Removal
+        ------------------------------------------------------------- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent; 
+        }
+
+        *:focus, *:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--light-blue-bg);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 17px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 12px 15px 30px 15px;
+        }
+
+        /* -------------------------------------------------------------
+           Navigation Bar
+        ------------------------------------------------------------- */
+        nav.navbar {
+            background-color: var(--card-bg);
+            border-radius: 30px;
+            padding: 8px 16px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.06);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        nav.navbar a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        nav.navbar a.active, nav.navbar a:hover {
+            color: var(--primary-blue);
+            background-color: var(--accent-color);
+        }
+
+        nav.navbar span.dot {
+            width: 4px;
+            height: 4px;
+            background-color: #cbd5e1;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* -------------------------------------------------------------
+           About Me Card
+        ------------------------------------------------------------- */
+        .about-card {
+            background-color: var(--card-bg);
+            padding: 30px 24px;
+            border-radius: 18px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(2, 132, 199, 0.06);
+            text-align: center;
+        }
+
+        .about-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 16px auto;
+            border: 3px solid var(--primary-blue);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.15);
+        }
+
+        .about-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-name {
+            font-size: 1.45rem;
+            color: var(--heading-color);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            color: #475569;
+            line-height: 1.8;
+            background-color: var(--light-blue-bg);
+            padding: 18px 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Social Links Area */
+        .social-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .social-btn:hover {
+            background-color: var(--primary-blue);
+            color: #ffffff;
+            border-color: var(--primary-blue);
+        }
+
+        /* -------------------------------------------------------------
+           Footer
+        ------------------------------------------------------------- */
+        footer {
+            text-align: center;
+            padding: 25px 0 10px 0;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html">হোম</a>
+        <span class="dot"></span>
+        <a href="articles.html">লেখা-জোখা</a>
+        <span class="dot"></span>
+        <a href="about.html" class="active">পরিচিতি</a>
+    </nav>
+
+    <!-- About Main Content Card -->
+    <div class="about-card">
+        <!-- Profile Picture -->
+        <div class="about-avatar">
+            <img src="https://i.ibb.co.com/WWztmGVt/FB-IMG-1790396518865.jpg" alt="মোঃ আমির হামজা">
+        </div>
+
+        <h1 class="about-name">মোঃ আমির হামজা</h1>
+
+        <!-- Bio Statement -->
+        <div class="about-text">
+            আসসালামু'আলাইকুম। আমি মোঃ আমির হামজা। পড়ালেখার পাশাপাশি লেখালেখিকে আমার অন্যতম শখ হিসেবে গ্রহণ করেছি।
+        </div>
+
+        <!-- Social Connect Section -->
+        <div class="social-title">যোগাযোগ ও সোশ্যাল প্রোফাইল</div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/1Kgpq9dXig/" class="social-btn" target="_blank" rel="noopener noreferrer">
+                <span>🌐</span> ফেসবুক
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; ২০২৬ মোঃ আমির হামজা। সর্বস্বত্ব সংরক্ষিত।
+    </footer>
+</div>
+
+</body>
+</html>
+
