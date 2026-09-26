@@ -1,395 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HADIQATUL A'DOL Members</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <style>
-    :root{
-      --bg: #f4f6f9;
-      --card: #ffffff;
-      --text: #222;
-      --accent: #4cafef;
-    }
-    body.dark{ --bg:#1e1e2f; --card:#2c2c3e; --text:#f9f9f9; --accent:#6ab4ff; }
-    body.green{ --accent:#4caf50; }
-    body.purple{ --accent:#9c27b0; }
-    body.blue{ --accent:#3b82f6; }
-    body.orange{ --accent:#fb923c; }
-    body.teal{ --accent:#14b8a6; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মোঃ আমির হামজা - পার্সোনাল ব্লগ ও চিন্তাভাবনা</title>
+    <!-- Google Fonts for Modern Bangla Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #0284c7;
+            --primary-dark: #0369a1;
+            --light-blue-bg: #f0f9ff;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+            --heading-color: #0f172a;
+            --accent-color: #e0f2fe;
+            --border-color: #bae6fd;
+        }
 
-    body{ font-family: "Segoe UI", Roboto, Arial, sans-serif; margin:0; background:var(--bg); color:var(--text); transition:background .3s, color .3s; }
-    header{ display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:var(--accent); color:#fff; }
-    header h1{ margin:0; font-size:18px; }
-    .menu{ font-size:22px; cursor:pointer; user-select:none; }
-    .menu-options{ display:none; position:absolute; right:18px; top:60px; background:var(--card); padding:10px; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.12); z-index:50; width:180px; }
-    .menu-options .theme-title{ font-weight:600; margin:6px 0 8px; color:var(--text); }
-    .menu-options .swatches{ display:flex; flex-wrap:wrap; gap:6px; }
-    .swatch{ width:28px; height:28px; border-radius:6px; cursor:pointer; border:2px solid rgba(255,255,255,0.35); box-shadow:0 2px 6px rgba(0,0,0,.08); }
-    .menu-options button{ display:block; width:100%; padding:8px 10px; margin-top:8px; border-radius:6px; border:none; background:var(--accent); color:white; cursor:pointer; }
+        /* -------------------------------------------------------------
+           Global Reset & Touch Blue Highlight Removal
+        ------------------------------------------------------------- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent; 
+        }
 
-    .container{ max-width:940px; margin:26px auto; padding:16px; }
-    .search-box{ display:flex; gap:8px; justify-content:center; margin-bottom:18px; }
-    .search-box input{ width:70%; padding:10px 12px; border-radius:8px; border:1px solid #ccc; }
-    .search-box button{ padding:10px 14px; border-radius:8px; border:none; background:var(--accent); color:#fff; cursor:pointer; }
+        *:focus, *:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
 
-    h2{ color:var(--accent); margin-top:26px; margin-bottom:8px; }
-    .list{ margin-top:8px; }
-    .card{ background:var(--card); border-radius:10px; padding:12px; margin:8px 0; box-shadow:0 4px 12px rgba(0,0,0,.06); transition:transform .18s, background .18s; cursor:pointer; }
-    .card:hover{ transform:scale(1.01); }
-    .card .id{ font-weight:700; color:var(--text); }
-    .details{ display:none; margin-top:8px; padding:10px; border-left:4px solid var(--accent); border-radius:6px; background:rgba(0,0,0,0.02); }
-    .details p{ margin:6px 0; }
-    .details .actions{ margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; }
-    .btn{ padding:8px 10px; border:none; border-radius:8px; cursor:pointer; background:var(--accent); color:#fff; }
-    .btn.secondary{ background:#666; }
-    .fav-btn.added{ background:#ffb703; color:#000; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    /* Favorites section hidden by default */
-    #favoritesSection{ display:none; }
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--light-blue-bg);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 17px;
+            padding: 0;
+            margin: 0;
+        }
 
-    footer{ text-align:center; padding:16px; margin-top:26px; background:var(--card); border-top:3px solid var(--accent); }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 12px 15px 30px 15px;
+        }
 
-    @media (max-width:520px){
-      .search-box input{ width:60%; }
-      .menu-options{ width:220px; right:10px; }
-    }
-  </style>
+        /* -------------------------------------------------------------
+           Navigation Bar
+        ------------------------------------------------------------- */
+        nav.navbar {
+            background-color: var(--card-bg);
+            border-radius: 30px;
+            padding: 8px 16px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.06);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        nav.navbar a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        nav.navbar a.active, nav.navbar a:hover {
+            color: var(--primary-blue);
+            background-color: var(--accent-color);
+        }
+
+        nav.navbar span.dot {
+            width: 4px;
+            height: 4px;
+            background-color: #cbd5e1;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* -------------------------------------------------------------
+           Author Bio Section / Hero Profile
+        ------------------------------------------------------------- */
+        .profile-card {
+            background-color: var(--card-bg);
+            padding: 24px 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(2, 132, 199, 0.06);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .profile-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin: 0 auto 14px auto;
+            border: 2px solid var(--primary-blue);
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(2, 132, 199, 0.15);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-name {
+            font-size: 1.4rem;
+            color: var(--heading-color);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .profile-bio {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* -------------------------------------------------------------
+           Section Title
+        ------------------------------------------------------------- */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            color: var(--heading-color);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* -------------------------------------------------------------
+           Blog Post Cards List
+        ------------------------------------------------------------- */
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .post-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.04);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-card:active {
+            transform: scale(0.99);
+        }
+
+        .post-card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .post-card-content {
+            padding: 16px;
+        }
+
+        .post-tag {
+            font-size: 0.75rem;
+            color: var(--primary-blue);
+            background-color: var(--accent-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .post-card-title {
+            font-size: 1.15rem;
+            color: var(--heading-color);
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .post-card:hover .post-card-title {
+            color: var(--primary-blue);
+        }
+
+        .post-card-excerpt {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .post-card-meta {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* -------------------------------------------------------------
+           Footer
+        ------------------------------------------------------------- */
+        footer {
+            text-align: center;
+            padding: 25px 0 10px 0;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>HADIQATUL A'DOL Members</h1>
-    <div style="position:relative;">
-      <div class="menu" onclick="toggleMenu()">☰</div>
-      <div class="menu-options" id="menuOptions" aria-hidden="true">
-        <div class="theme-title">Choose Theme</div>
-        <div class="swatches" style="margin-bottom:8px;">
-          <div class="swatch" title="Light" style="background:#f4f6f9" onclick="setTheme('light')"></div>
-          <div class="swatch" title="Dark" style="background:#1e1e2f" onclick="setTheme('dark')"></div>
-          <div class="swatch" title="Green" style="background:#4caf50" onclick="setTheme('green')"></div>
-          <div class="swatch" title="Purple" style="background:#9c27b0" onclick="setTheme('purple')"></div>
-          <div class="swatch" title="Blue" style="background:#3b82f6" onclick="setTheme('blue')"></div>
-          <div class="swatch" title="Orange" style="background:#fb923c" onclick="setTheme('orange')"></div>
-          <div class="swatch" title="Teal" style="background:#14b8a6" onclick="setTheme('teal')"></div>
+
+<div class="container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="active">হোম</a>
+        <span class="dot"></span>
+        <a href="articles.html">লেখা-জোখা</a>
+        <span class="dot"></span>
+        <a href="about.html">পরিচিতি</a>
+    </nav>
+
+    <!-- Author Profile Header -->
+    <div class="profile-card" id="about">
+        <div class="profile-avatar">
+            <img src="https://i.ibb.co.com/WWztmGVt/FB-IMG-1790396518865.jpg" alt="মোঃ আমির হামজা">
         </div>
-        <button onclick="showFavorites()">View Favorites ⭐</button>
-      </div>
-    </div>
-  </header>
-
-  <main class="container">
-    <!-- MAIN CONTENT -->
-    <div id="mainContent">
-      <div class="search-box">
-        <input id="searchInput" type="text" placeholder="Search by ID or name (type to filter)">
-        <button onclick="performSearch()">Search</button>
-      </div>
-
-      <section>
-        <h2>Admin</h2>
-        <div class="list" id="adminList">
-          <div class="card" data-id="HA-25X9Q7-01" data-name="Md Amir Hamza">
-            <div class="id">HA-25X9Q7-01</div>
-            <div class="details">
-              <p><strong>Full Name:</strong> Md Amir Hamza (Admin)</p>
-              <p><strong>Address:</strong> Johirpur, Chhatak, Sunamgonj</p>
-              <p><strong>Member Id:</strong> HA-25X9Q7-01</p>
-              <div class="actions">
-                <button class="btn fav-btn" data-id="HA-25X9Q7-01" onclick="toggleFavorite('HA-25X9Q7-01', event)">⭐ Favorite</button>
-                <button class="btn" onclick="copyToClipboard('HA-25X9Q7-01', event)">📋 Copy</button>
-                <button class="btn" onclick="downloadPDF('HA-25X9Q7-01', event)">📑 PDF</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Members</h2>
-        <div class="list" id="memberList">
-          <div class="card" data-id="HA-25K4M2-02" data-name="Munaim Ahmed Ihfaz">
-            <div class="id">HA-25K4M2-02</div>
-            <div class="details">
-              <p><strong>Full Name:</strong> Munaim Ahmed Ihfaz (Member)</p>
-              <p><strong>Address:</strong> Bade Jhigli, Chhatak, Sunamgonj</p>
-              <p><strong>Member Id:</strong> HA-25K4M2-02</p>
-              <div class="actions">
-                <button class="btn fav-btn" data-id="HA-25K4M2-02" onclick="toggleFavorite('HA-25K4M2-02', event)">⭐ Favorite</button>
-                <button class="btn" onclick="copyToClipboard('HA-25K4M2-02', event)">📋 Copy</button>
-                <button class="btn" onclick="downloadPDF('HA-25K4M2-02', event)">📑 PDF</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card" data-id="HA-25Z7L8-03" data-name="Minhaz Uddin Kadir">
-            <div class="id">HA-25Z7L8-03</div>
-            <div class="details">
-              <p><strong>Full Name:</strong> Minhaz Uddin Kadir (Member)</p>
-              <p><strong>Address:</strong> Bade Jhigli (Kandal Para), Chhatak, Sunamgonj</p>
-              <p><strong>Member Id:</strong> HA-25Z7L8-03</p>
-              <div class="actions">
-                <button class="btn fav-btn" data-id="HA-25Z7L8-03" onclick="toggleFavorite('HA-25Z7L8-03', event)">⭐ Favorite</button>
-                <button class="btn" onclick="copyToClipboard('HA-25Z7L8-03', event)">📋 Copy</button>
-                <button class="btn" onclick="downloadPDF('HA-25Z7L8-03', event)">📑 PDF</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card" data-id="HA-25R6P5-04" data-name="Ebrahim Jamal Abdullah">
-            <div class="id">HA-25R6P5-04</div>
-            <div class="details">
-              <p><strong>Full Name:</strong> Ebrahim Jamal Abdullah (Member)</p>
-              <p><strong>Address:</strong> Boratuka, Chhatak, Sunamgonj</p>
-              <p><strong>Member Id:</strong> HA-25R6P5-04</p>
-              <div class="actions">
-                <button class="btn fav-btn" data-id="HA-25R6P5-04" onclick="toggleFavorite('HA-25R6P5-04', event)">⭐ Favorite</button>
-                <button class="btn" onclick="copyToClipboard('HA-25R6P5-04', event)">📋 Copy</button>
-                <button class="btn" onclick="downloadPDF('HA-25R6P5-04', event)">📑 PDF</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        <h1 class="profile-name">মোঃ আমির হামজা</h1>
+        <p class="profile-bio">
+            নিজের লেখাগুলোকে একসূত্রে গেঁথে রাখার এক ছোট্ট প্রয়াস। এখানে খুঁজে পাবেন আমার প্রায় সব লেখা এক জায়গায়, একটু বেশি গোছানো রূপে।
+        </p>
     </div>
 
-    <!-- FAVORITES (hidden, toggled) -->
-    <div id="favoritesSection">
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <h2>⭐ Favorite Members</h2>
-        <div>
-          <button class="btn secondary" onclick="goHome()">🏠 Back</button>
+    <!-- Section Header -->
+    <div class="section-header" id="articles">
+        <div class="section-title">
+            <span> সাম্প্রতিক লেখা-জোখা
         </div>
-      </div>
-      <div id="favList" style="margin-top:12px;"></div>
     </div>
-  </main>
 
-  <footer>
-    <p>© HADIQATUL A'DOL | EST. 2023 | Developed by Md Amir Hamza</p>
-  </footer>
-
-<script>
-  // DATA
-  const data = {
-    "HA-25X9Q7-01": {name:"Md Amir Hamza (Admin)", address:"Johirpur, Chhatak, Sunamgonj", id:"HA-25X9Q7-01"},
-    "HA-25K4M2-02": {name:"Munaim Ahmed Ihfaz (Member)", address:"Bade Jhigli, Chhatak, Sunamgonj", id:"HA-25K4M2-02"},
-    "HA-25Z7L8-03": {name:"Minhaz Uddin Kadir (Member)", address:"Bade Jhigli (Kandal Para), Chhatak, Sunamgonj", id:"HA-25Z7L8-03"},
-    "HA-25R6P5-04": {name:"Ebrahim Jamal Abdullah (Member)", address:"Boratuka, Chhatak, Sunamgonj", id:"HA-25R6P5-04"}
-  };
-
-  // UI helpers
-  function toggleMenu(){
-    const m = document.getElementById('menuOptions');
-    m.style.display = (m.style.display === 'block') ? 'none' : 'block';
-  }
-
-  function setTheme(mode){
-    document.body.className = mode === 'light' ? '' : mode;
-    localStorage.setItem('had_theme', mode);
-    document.getElementById('menuOptions').style.display = 'none';
-    updateAccentUI();
-  }
-
-  function updateAccentUI(){
-    // could be used to update dynamic elements if needed
-  }
-
-  // load saved theme
-  window.addEventListener('load', ()=>{
-    const saved = localStorage.getItem('had_theme');
-    if(saved) setTheme(saved);
-    initCards();
-    updateFavButtons();
-  });
-
-  // Card interactions
-  function initCards(){
-    document.querySelectorAll('.card').forEach(card=>{
-      const id = card.getAttribute('data-id');
-      card.addEventListener('click', (e)=>{
-        // prevent toggle when clicking buttons inside
-        if(e.target.closest('button')) return;
-        const details = card.querySelector('.details');
-        details.style.display = details.style.display === 'block' ? 'none' : 'block';
-      });
-    });
-  }
-
-  // SEARCH: live filter by id or name
-  document.getElementById('searchInput').addEventListener('input', function(){
-    const q = this.value.trim().toLowerCase();
-    document.querySelectorAll('.card').forEach(card=>{
-      const id = card.dataset.id.toLowerCase();
-      const name = card.dataset.name.toLowerCase();
-      const show = id.includes(q) || name.includes(q);
-      card.style.display = show ? 'block' : 'none';
-    });
-    // clear search result area
-    document.getElementById('searchResult').innerHTML = '';
-  });
-
-  function performSearch(){
-    // fallback when user presses Search button - show first exact match or alert
-    const q = document.getElementById('searchInput').value.trim();
-    if(!q) return;
-    const key = Object.keys(data).find(k => k.toLowerCase() === q.toLowerCase() || data[k].name.toLowerCase() === q.toLowerCase());
-    if(key){
-      // open its details and scroll into view
-      const card = document.querySelector(`.card[data-id="${key}"]`);
-      if(card){
-        card.scrollIntoView({behavior:'smooth', block:'center'});
-        const det = card.querySelector('.details');
-        det.style.display = 'block';
-      }
-    } else {
-      const sr = document.getElementById('searchResult');
-      sr.innerHTML = `<p style="color:red; text-align:center">No member found for "<strong>${q}</strong>"</p>`;
-    }
-  }
-
-  // FAVORITES
-  function toggleFavorite(id, e){
-    if(e) e.stopPropagation();
-    let favs = JSON.parse(localStorage.getItem('favorites') || '[]');
-    const idx = favs.indexOf(id);
-    if(idx === -1){
-      favs.push(id);
-      alert('⭐ Added to Favorites');
-    } else {
-      favs.splice(idx,1);
-      alert('❌ Removed from Favorites');
-    }
-    localStorage.setItem('favorites', JSON.stringify(favs));
-    updateFavButtons();
-  }
-
-  function updateFavButtons(){
-    const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
-    document.querySelectorAll('.fav-btn').forEach(btn=>{
-      const id = btn.getAttribute('data-id');
-      if(favs.includes(id)){
-        btn.classList.add('added');
-        btn.textContent = '➖ Unfavorite';
-      } else {
-        btn.classList.remove('added');
-        btn.textContent = '⭐ Favorite';
-      }
-    });
-  }
-
-  function showFavorites(){
-    const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
-    const favList = document.getElementById('favList');
-    favList.innerHTML = '';
-    if(favs.length === 0){
-      favList.innerHTML = "<p style='color:gray;text-align:center'>No favorites added.</p>";
-    } else {
-      favs.forEach(id=>{
-        const m = data[id];
-        if(!m) return;
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.innerHTML = `<div class="id">${m.id}</div>
-          <div class="details" style="display:block">
-            <p><strong>Full Name:</strong> ${m.name}</p>
-            <p><strong>Address:</strong> ${m.address}</p>
-            <p><strong>Member Id:</strong> ${m.id}</p>
-            <div class="actions">
-              <button class="btn" onclick="copyToClipboard('${m.id}', event)">📋 Copy</button>
-              <button class="btn" onclick="downloadPDF('${m.id}', event)">📑 PDF</button>
-              <button class="btn secondary" onclick="removeFavorite('${m.id}', event)">❌ Remove</button>
+    <!-- Posts List (Single Post) -->
+    <div class="post-list">
+        
+        <!-- Post Item (Water Taste Blog) -->
+        <a href="water-blog.html" class="post-card">
+            <img src="https://i.ibb.co.com/8DQ8Rp1n/IMG-63cae6f9-721b-4571-b81e-dda5e5539419.jpg" alt="পানির স্বাদ" class="post-card-image">
+            <div class="post-card-content">
+                <span class="post-tag">বিজ্ঞান ও স্নায়ুবিজ্ঞান</span>
+                <h2 class="post-card-title">পানির কি কোনো স্বাদ আছে নাকি কেবলই মস্তিষ্কের ভ্রম?</h2>
+                <p class="post-card-excerpt">
+                    গরমের দিনে এক গ্লাস ঠান্ডা পানি মুখে দিলে যে অপূর্ব অনুভূতি হয়, তা কি কেবল তৃষ্ণা মেটার ফল নাকি জিভের নিজস্ব কোনো অনুভূতি? বিজ্ঞান যা বলছে...
+                </p>
+                <div class="post-card-meta">
+                    <span>২৬ সেপ্টেম্বর ২০২৬</span>
+                    <span>৩ মিনিট পড়া</span>
+                </div>
             </div>
-          </div>`;
-        favList.appendChild(div);
-      });
-    }
-    // toggle sections
-    document.getElementById('mainContent').style.display = 'none';
-    document.getElementById('favoritesSection').style.display = 'block';
-    document.getElementById('menuOptions').style.display = 'none';
-    updateFavButtons();
-  }
+        </a>
 
-  function removeFavorite(id, e){
-    if(e) e.stopPropagation();
-    let favs = JSON.parse(localStorage.getItem('favorites') || '[]');
-    favs = favs.filter(f=> f !== id);
-    localStorage.setItem('favorites', JSON.stringify(favs));
-    showFavorites();
-  }
+    </div>
 
-  function goHome(){
-    document.getElementById('favoritesSection').style.display = 'none';
-    document.getElementById('mainContent').style.display = 'block';
-    document.getElementById('menuOptions').style.display = 'none';
-    updateFavButtons();
-  }
+    <!-- Footer -->
+    <footer>
+        &copy; ২০২৬ মোঃ আমির হামজা। সর্বস্বত্ব সংরক্ষিত।
+    </footer>
+</div>
 
-  // COPY to clipboard (share option replaced)
-  function copyToClipboard(id, e){
-    if(e) e.stopPropagation();
-    const m = data[id];
-    if(!m) return;
-    const text = `Full Name: ${m.name}\nAddress: ${m.address}\nMember ID: ${m.id}`;
-    navigator.clipboard.writeText(text).then(()=>{
-      alert('Copied to clipboard!');
-    }).catch(()=>{
-      alert('Could not copy to clipboard');
-    });
-  }
-
-  // PDF (styled)
-  async function downloadPDF(id, e){
-    if(e) e.stopPropagation();
-    const m = data[id];
-    if(!m){
-      alert('Member not found');
-      return;
-    }
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({unit:'pt', format:'a4'});
-    const pageW = doc.internal.pageSize.getWidth();
-    // header band
-    doc.setFillColor(76,175,239);
-    doc.rect(0,0,pageW,70,'F');
-    doc.setTextColor(255,255,255);
-    doc.setFontSize(20);
-    doc.setFont('helvetica','bold');
-    doc.text('HADIQATUL A\'DOL', pageW/2, 40, {align:'center'});
-    // content box
-    doc.setDrawColor(200);
-    doc.setFillColor(255,255,255);
-    doc.roundedRect(40,90,pageW-80,220,8,8,'F');
-    let xLabel = 60, xVal = 160, y = 120;
-    doc.setTextColor(30,30,30);
-    doc.setFont('helvetica','bold');
-    doc.setFontSize(12);
-    doc.text('Full Name:', xLabel, y);
-    doc.setFont('helvetica','normal');
-    doc.setFontSize(13);
-    doc.text(m.name, xVal, y);
-    y += 28;
-    doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.text('Address:', xLabel, y);
-    doc.setFont('helvetica','normal'); doc.setFontSize(12);
-    const splitAddr = doc.splitTextToSize(m.address, pageW - xVal - 60);
-    doc.text(splitAddr, xVal, y);
-    y += (splitAddr.length * 14) + 6;
-    doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.text('Member Id:', xLabel, y);
-    doc.setFont('helvetica','normal'); doc.setFontSize(12); doc.text(m.id, xVal, y);
-    // footer small
-    doc.setFontSize(9); doc.setTextColor(120);
-    doc.text('© HADIQATUL A\'DOL 2025 | Developed by Md Amir Hamza', pageW/2, doc.internal.pageSize.getHeight()-40, {align:'center'});
-    doc.save(`${m.id}.pdf`);
-  }
-
-  // Close menu if click outside
-  document.addEventListener('click', (e)=>{
-    const menu = document.getElementById('menuOptions');
-    if(!e.target.closest('.menu') && !e.target.closest('.menu-options')){
-      menu.style.display = 'none';
-    }
-  });
-</script>
 </body>
 </html>
