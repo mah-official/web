@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পানির কি কোনো স্বাদ আছে নাকি কেবলই মস্তিষ্কের ভ্রম?</title>
+    <!-- Google Fonts for Modern Bangla Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #0284c7;
+            --primary-dark: #0369a1;
+            --light-blue-bg: #f0f9ff;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+            --heading-color: #0f172a;
+            --accent-color: #e0f2fe;
+            --border-color: #bae6fd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent; 
+        }
+
+        *:focus, *:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--light-blue-bg);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 17px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 12px 15px 30px 15px;
+        }
+
+        /* Navigation Bar */
+        nav.navbar {
+            background-color: var(--card-bg);
+            border-radius: 30px;
+            padding: 8px 16px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.06);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        nav.navbar a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        nav.navbar a:hover, nav.navbar a:active {
+            color: var(--primary-blue);
+            background-color: var(--accent-color);
+        }
+
+        nav.navbar span.dot {
+            width: 4px;
+            height: 4px;
+            background-color: #cbd5e1;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Article Base Card */
+        article {
+            background-color: var(--card-bg);
+            padding: 22px 20px 30px 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(2, 132, 199, 0.06);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Header Section */
+        h1.blog-title {
+            color: var(--heading-color);
+            font-size: 1.65rem;
+            line-height: 1.4;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .meta-info {
+            font-size: 0.88rem;
+            color: #64748b;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 15px;
+        }
+
+        /* Featured Image & Left Aligned Credit */
+        .featured-image-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .featured-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+
+        .image-credit {
+            font-size: 0.78rem;
+            font-style: italic;
+            color: #64748b;
+            margin-top: 6px;
+            text-align: left; /* বামপাশে সেট করা হয়েছে */
+            line-height: 1.4;
+        }
+
+        /* Content Typography */
+        h2 {
+            color: var(--primary-blue);
+            font-size: 1.25rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+
+        /* Reference SuperScript Links */
+        .ref-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+            display: inline-block;
+        }
+
+        .ref-link:hover, .ref-link:active {
+            background-color: var(--accent-color);
+        }
+
+        /* Share Button */
+        .share-section {
+            margin: 30px 0 20px 0;
+            padding: 18px 0;
+            border-top: 1px dashed #cbd5e1;
+            border-bottom: 1px dashed #cbd5e1;
+            text-align: center;
+        }
+
+        .share-btn {
+            background-color: var(--primary-blue);
+            color: #ffffff;
+            border: none;
+            padding: 10px 24px;
+            font-size: 0.98rem;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            user-select: none;
+        }
+
+        .share-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .share-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* References Section */
+        .references {
+            margin-top: 30px;
+            padding: 16px;
+            background-color: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            font-size: 0.88rem;
+            font-style: italic;
+            color: #64748b;
+        }
+
+        .references h3 {
+            font-style: normal;
+            font-size: 1rem;
+            color: var(--heading-color);
+            margin-bottom: 10px;
+        }
+
+        .references ol {
+            padding-left: 20px;
+        }
+
+        .references li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: background-color 0.4s ease;
+        }
+
+        .references li:target {
+            animation: softHighlight 2.5s ease-out;
+        }
+
+        @keyframes softHighlight {
+            0% { background-color: #e0f2fe; }
+            100% { background-color: transparent; }
+        }
+
+        /* Footer Copyright */
+        footer {
+            text-align: center;
+            padding: 20px 0 10px 0;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* Toast notification */
+        #toast {
+            visibility: hidden;
+            min-width: 200px;
+            background-color: #1e293b;
+            color: #fff;
+            text-align: center;
+            border-radius: 20px;
+            padding: 10px 16px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.4s, fadeout 0.4s 2.5s;
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#home">হোম</a>
+        <span class="dot"></span>
+        <a href="#articles">লেখা-জোখা</a>
+        <span class="dot"></span>
+        <a href="#about">পরিচিতি</a>
+    </nav>
+
+    <article id="home">
+        <!-- Title -->
+        <h1 class="blog-title">পানির কি কোনো স্বাদ আছে নাকি কেবলই মস্তিষ্কের ভ্রম?</h1>
+
+        <!-- Meta info -->
+        <div class="meta-info">
+            <span>লেখক: মোঃ আমির হামজা</span>
+            <span>প্রথম প্রকাশ: ২৬ সেপ্টেম্বর ২০২৬</span>
+            <span>সর্বশেষ সংস্করণ: ২৬ সেপ্টেম্বর ২০২৬</span>
+        </div>
+
+        <!-- Featured Image & Left-aligned Image Credit -->
+        <div class="featured-image-container">
+            <img src="https://i.ibb.co.com/8DQ8Rp1n/IMG-63cae6f9-721b-4571-b81e-dda5e5539419.jpg" alt="পানির স্বাদের রহস্য">
+            <div class="image-credit">Image credit: Yuki Oka, Michelle Williamson and Charles Zuker (via livescience.com)</div>
+        </div>
+
+        <!-- Intro Paragraph -->
+        <p>আমি যদি আপনাকে জিজ্ঞেস করি পানির বর্ণনা দিনতো! আমি হয়তো অবলিলায় বলে উঠবেন, "পানি বর্ণহীন, গন্ধহীন এবং স্বাদহীন একটি তরল"। কিন্তু গরমের দিনে রোদে পুড়ে এসে অথবা সারাদিন রোজা রাখার পর এক গ্লাস ঠাণ্ডা পানি মুখে দিয়েই কি আপনার মনে হয়নি "উফ! এই পানির যে কী এক অপূর্ব স্বাদ!" তাহলে কী আসলেই পানি টেস্ট লেস? নাকি আমাদের জিভ আমাদের সাথে কোনো ছলাকলা করছে? তাহলে চলুন এবিষয়ে একটু সংক্ষিপ্ত আলাপ করা যাক;</p>
+
+        <!-- Paragraphs -->
+        <h2>১. বিশুদ্ধ পানির কি আসলেই কোনো স্বাদ নেই?</h2>
+        <p>যদি একদম রসায়নের ল্যাবরেটরির বিশুদ্ধ পানির (Pure H2O) কথা বলি, তবে উত্তর হলো হ্যাঁ, খাঁটি পানি বলতে গেলে স্বাদহীন। বিজ্ঞানের ভাষায় স্বাদ পেতে হলে কোনো বস্তুকে আমাদের জিভের স্বাদকোরক বা ট্যাস্ট বাড (Taste Buds) এর সাথে রাসায়নিক বিক্রিয়া করতে হয়। আমাদের জিভ সাধারণত পাঁচটি মৌলিক স্বাদ চিনতে অভ্যস্ত: মিষ্টি, টক, নোনতা, তেতো এবং উমামি। বিশুদ্ধ পানিতে কোনো খনিজ বা আয়ন থাকে না যা আমাদের স্বাদকোরককে সরাসরি কোনো সিগন্যাল দেবে। কিন্তু থামুন! গল্প এখানেই শেষ নয়। মানুষের শরীর তো আর ল্যাবরেটরির টেস্টটিউব নয়!</p>
+
+        <h2>২. "পানির স্বাদ" আসলে কিসের স্বাদ?</h2>
+        <p>আমরা প্রতিদিন যে পানি খাই তা কিন্তু কখনই শতভাগ বিশুদ্ধ H2O নয় (এবং খাওয়া উচিতও নয়, কারণ ডিমিনারলাইজড পানি খাওয়া শরীরের জন্য ভালো নয়)। আমরা টেপ, বোতল বা ফিল্টার থেকে যে পানি খাই, তার ভেতরে লুকিয়ে থাকে একদল অদৃশ্য অতিথির দল ক্যালসিয়াম, ম্যাগনেসিয়াম, সোডিয়াম, পটাশিয়াম এবং বাইকার্বোনেট। পানিতে সঠিক মাত্রায় ক্যালসিয়াম ও বাইকার্বোনেট থাকলে সেই পানি আমাদের কাছে হালকা সুস্বাদু বা "মিষ্টি" মনে হয়। আবার পানিতে ম্যাগনেসিয়াম বা সোডিয়ামের মাত্রা একটু বেশি হলেই সেই পানির স্বাদ নোনতা বা হালকা খসখসে/তেতো লাগে। এক গবেষণায় দেখা গেছে, বিভিন্ন দেশের ব্র্যান্ডের মিনারেল ওয়াটারের স্বাদের তারতম্যের মূল কারণই হলো এই খনিজগুলোর ভিন্ন অনুপাত।<a href="#ref1" class="ref-link">¹</a></p>
+
+        <h2>৩. জিভের নিজস্ব ছলাকলা: "আফটার টেস্ট" (After taste)</h2>
+        <p>কখনো খেয়াল করেছেন, ভীষণ মিষ্টি কোনো মিষ্টি বা কেক খাওয়ার ঠিক পরপরই পানি খেলে সেই পানি কেমন যেন টক বা অদ্ভুত স্বাদের লাগে? আবার নোনতা কিছু খাওয়ার পর পানি খেলে পানির স্বাদ একটু মিষ্টি লাগে? বিজ্ঞানী ডি. আর. ম্যাকবার্নি ১৯৬০ এর দশকে একটি চমৎকার বিষয় আবিষ্কার করেন।<a href="#ref2" class="ref-link">²</a> যাকে বলা হয় স্বাদের অভিযোজন (Taste Adaptation)। আমাদের জিভ যখন কোনো তীব্র স্বাদের (যেমন মিষ্টি বা লবণ) সংস্পর্শে থাকে, তখন জিভের স্বাদকোরকগুলো সেই স্বাদে অভ্যস্ত হয়ে যায়। ঠিক এর পরপরই যখন আমরা নিরপেক্ষ (Neutral) পানি খাই, তখন জিভ তার স্বাভাবিক ভারসাম্যে ফিরে আসার চেষ্টা করে। এই পরিবর্তনের মুহূর্তে জিভ ব্রেনকে ভুল সিগন্যাল পাঠায়! অর্থাৎ, পানির নিজস্ব কোনো স্বাদ না থাকলেও, আপনার আগের খাওয়া খাবারের সাপেক্ষে পানির একটা আভাসী স্বাদ তৈরি হয়।</p>
+
+        <h2>৪. তবে কি পানির নিজস্ব ষষ্ঠ কোনো স্বাদ আছে?</h2>
+        <p>বিজ্ঞানীরা দীর্ঘদিন ধরে ভাবতেন পানি পানের পর মস্তিষ্কে যে তৃপ্তির অনুভূতি হয়, তা কেবলই আমাদের পানির তেষ্টা মেটার মনস্তাত্ত্বিক ফল। কিন্তু ২০১৭ সালে ক্যালিফোর্নিয়া ইনস্টিটিউট অব টেকনোলজি (Caltech) এর একদল গবেষক ইঁদুরের ওপর গবেষণা চালিয়ে চোখ কপালে তোলার মতো এক তথ্য আবিষ্কার করেন!<a href="#ref3" class="ref-link">³</a> তারা দেখেন, স্তন্যপায়ী প্রাণীদের জিভে কেবল মিষ্টি, টক বা ঝাল নয় পানির উপস্থিতিও শনাক্ত করার জন্য বিশেষ নিউরন ও রিসেপ্টর রয়েছে। মজার ব্যাপার হলো, আমাদের জিভের যে রিসেপ্টরগুলো টক স্বাদ শনাক্ত করে, পানি পানের সময় সেই রিসেপ্টরগুলোই সক্রিয় হয়ে ওঠে! অর্থাৎ, ব্রেন পানিকে অন্য যেকোনো তরল থেকে আলাদা হিসেবে চিনতে পারে। তাই পানি হয়তো তথাকথিত "স্বাদহীন", কিন্তু আমাদের স্নায়ুতন্ত্রের কাছে তার একটা নিজস্ব রূপ আর সিগন্যাল রয়েছে।</p>
+
+        <p>তাহলে মোদ্দাকথা কী দাঁড়াল? রসায়নবিদের চশমা দিয়ে দেখলে পানি স্বাদহীন। কিন্তু একজন প্রাণিবিজ্ঞানী বা স্নায়ুবিজ্ঞানীর চোখ দিয়ে দেখলে পানি স্বাদহীন নয়, বরং পানির স্বাদ হলো জিভের এক অপূর্ব রসায়ন ও প্রকৃতির ভারসাম্য! পানির নিজের হয়তো আলাদা কোনো সুর নেই, কিন্তু আপনার মুখের ভেতরের বাদ্যযন্ত্রে ঢুকে সে আবহাওয়া আর খনিজ ভেদে নিত্যনতুন সুর তোলে। তাই পরের বার যখন তৃষ্ণার্ত ছাতি নিয়ে এক চুমুক ঠাণ্ডা পানি খাবেন, তখন বুক চিরে যে তৃপ্তিটা বের হবে জেনে রাখবেন, ওটাই প্রকৃতির সেরা স্বাদ!</p>
+
+        <!-- Share Button -->
+        <div class="share-section">
+            <button class="share-btn" onclick="shareArticle()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                লেখাটি শেয়ার করুন
+            </button>
+        </div>
+
+        <!-- References Section -->
+        <div class="references">
+            <h3>তথ্যসূত্র (References):</h3>
+            <ol>
+                <li id="ref1">Journal of Food Science প্রকাশিত গবেষণা অনুযায়ী, পানিতে থাকা TDS (Total Dissolved Solids) এবং ক্যালসিয়াম ও বাইকার্বোনেট (bicarbonate) আয়নের অনুপাতই নির্ধারণ করে কোনো পানি খেতে Soft নাকি Hard লাগবে।</li>
+                <li id="ref2">McBurney, D. R. (1969). "Effects of adaptation on human taste sensitivity." Chemical Senses.</li>
+                <li id="ref3">Zocchi, D. S., et al. (2017). "The cellular mechanism for water detection in the mammalian taste system." Nature Neuroscience.</li>
+            </ol>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        &copy; ২০২৬ মোঃ আমির হামজা। সর্বস্বত্ব সংরক্ষিত।
+    </footer>
+</div>
+
+<!-- Toast Message -->
+<div id="toast">লিংক কপি করা হয়েছে!</div>
+
+<script>
+    function shareArticle() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'পানির কি কোনো স্বাদ আছে নাকি কেবলই মস্তিষ্কের ভ্রম?',
+                url: window.location.href
+            }).catch(console.error);
+        } else {
+            // Fallback: Copy link to clipboard
+            navigator.clipboard.writeText(window.location.href).then(function() {
+                var toast = document.getElementById("toast");
+                toast.className = "show";
+                setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
